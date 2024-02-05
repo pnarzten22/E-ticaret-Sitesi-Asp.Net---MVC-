@@ -1,0 +1,27 @@
+﻿@model List<EntityLayer.Entities.Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<a class="btn btn-primary" href="/AdminCategory/Create">Kategori Ekle</a>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Ad</th>
+        <th>Açıklama</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor musunuz?')" })</td>
+            <td><a href="/AdminCategory/Update/@item.Id" class="btn btn-warning">Güncelle</a></td>
+        </tr>
+    }
+</table>
+
